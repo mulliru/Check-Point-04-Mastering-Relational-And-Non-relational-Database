@@ -31,6 +31,8 @@ Este é um projeto desenvolvido por **Larissa Lopes Oliveira**, **Lucas Alcânta
 📦 **docs**  
 - `dicionario_dados.md` - Estrutura e explicação das tabelas  
 - `evidencias_execucao.md` - Prints das execuções e consultas  
+- `documentacao_projeto.docx` - Documentação do projeto com prints e explicações
+
 
 ---
 
