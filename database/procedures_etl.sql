@@ -556,3 +556,66 @@ END CARGA_FATO_VENDAS;
 
 -- Execução da procedure para popular tabela FATO_VENDAS
 EXEC CARGA_FATO_VENDAS;
+
+
+-- Procedure para validar integridade da tabela FATO_VENDAS
+CREATE OR REPLACE PROCEDURE VALIDA_INTEGRIDADE_FATO AS
+    v_erros NUMBER := 0;
+BEGIN
+    -- Verificar COD_CLIENTE
+    SELECT COUNT(*) INTO v_erros
+    FROM FATO_VENDAS f
+    LEFT JOIN DIM_CLIENTE d ON f.COD_CLIENTE = d.COD_CLIENTE
+    WHERE d.COD_CLIENTE IS NULL;
+    IF v_erros > 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Erro: ' || v_erros || ' registros em FATO_VENDAS com COD_CLIENTE inválido.');
+    END IF;
+
+    -- Verificar COD_VENDEDOR
+    SELECT COUNT(*) INTO v_erros
+    FROM FATO_VENDAS f
+    LEFT JOIN DIM_VENDEDOR d ON f.COD_VENDEDOR = d.COD_VENDEDOR
+    WHERE d.COD_VENDEDOR IS NULL;
+    IF v_erros > 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Erro: ' || v_erros || ' registros em FATO_VENDAS com COD_VENDEDOR inválido.');
+    END IF;
+
+    -- Verificar SEQ_ENDERECO_CLIENTE
+    SELECT COUNT(*) INTO v_erros
+    FROM FATO_VENDAS f
+    LEFT JOIN DIM_LOCALIZACAO d ON f.SEQ_ENDERECO_CLIENTE = d.SEQ_ENDERECO_CLIENTE
+    WHERE d.SEQ_ENDERECO_CLIENTE IS NULL;
+    IF v_erros > 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Erro: ' || v_erros || ' registros em FATO_VENDAS com SEQ_ENDERECO_CLIENTE inválido.');
+    END IF;
+
+    -- Verificar ID_TEMPO
+    SELECT COUNT(*) INTO v_erros
+    FROM FATO_VENDAS f
+    LEFT JOIN DIM_TEMPO d ON f.ID_TEMPO = d.ID_TEMPO
+    WHERE d.ID_TEMPO IS NULL;
+    IF v_erros > 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Erro: ' || v_erros || ' registros em FATO_VENDAS com ID_TEMPO inválido.');
+    END IF;
+
+    -- Verificar COD_PRODUTO
+    SELECT COUNT(*) INTO v_erros
+    FROM FATO_VENDAS f
+    LEFT JOIN DIM_PRODUTO d ON f.COD_PRODUTO = d.COD_PRODUTO
+    WHERE d.COD_PRODUTO IS NULL;
+    IF v_erros > 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Erro: ' || v_erros || ' registros em FATO_VENDAS com COD_PRODUTO inválido.');
+    END IF;
+
+    IF v_erros = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Validação concluída: Nenhum erro de integridade encontrado em FATO_VENDAS.');
+    END IF;
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Erro na validação de integridade: ' || SQLERRM);
+END VALIDA_INTEGRIDADE_FATO;
+/
+
+
+-- Execução da procedure para validar integridade da tabela FATO_VENDAS
+EXEC VALIDA_INTEGRIDADE_FATO;
