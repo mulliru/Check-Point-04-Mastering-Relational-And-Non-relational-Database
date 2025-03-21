@@ -341,7 +341,7 @@ BEGIN
     -- Eletrônicos (200 produtos)
     FOR i IN 1..200 LOOP
         BEGIN
-            INSERT INTO DIM_PRODUTO (COD_PRODUTO, NOME_PRODUTO, CATEGORIA, PRECO)
+            INSERT INTO DIM_PRODUTO (COD_PRODUTO, NOME_PRODUTO, CATEGORIA)
             VALUES (
                 v_cod_produto,
                 CASE FLOOR(DBMS_RANDOM.VALUE(1, 6))
@@ -351,14 +351,7 @@ BEGIN
                     WHEN 4 THEN 'Fone de Ouvido JBL Tune 500'
                     ELSE 'Console PlayStation 5'
                 END,
-                'Eletrônicos',
-                CASE FLOOR(DBMS_RANDOM.VALUE(1, 6))
-                    WHEN 1 THEN 4500.00
-                    WHEN 2 THEN 3500.00
-                    WHEN 3 THEN 2800.00
-                    WHEN 4 THEN 150.00
-                    ELSE 3999.00
-                END
+                'Eletrônicos'
             );
             v_cod_produto := v_cod_produto + 1;
         END;
@@ -367,7 +360,7 @@ BEGIN
     -- Roupas (200 produtos)
     FOR i IN 1..200 LOOP
         BEGIN
-            INSERT INTO DIM_PRODUTO (COD_PRODUTO, NOME_PRODUTO, CATEGORIA, PRECO)
+            INSERT INTO DIM_PRODUTO (COD_PRODUTO, NOME_PRODUTO, CATEGORIA)
             VALUES (
                 v_cod_produto,
                 CASE FLOOR(DBMS_RANDOM.VALUE(1, 6))
@@ -377,14 +370,7 @@ BEGIN
                     WHEN 4 THEN 'Jaqueta Columbia Fleece'
                     ELSE 'Vestido Renner Floral'
                 END,
-                'Roupas',
-                CASE FLOOR(DBMS_RANDOM.VALUE(1, 6))
-                    WHEN 1 THEN 89.90
-                    WHEN 2 THEN 199.90
-                    WHEN 3 THEN 499.90
-                    WHEN 4 THEN 299.90
-                    ELSE 129.90
-                END
+                'Roupas'
             );
             v_cod_produto := v_cod_produto + 1;
         END;
@@ -393,7 +379,7 @@ BEGIN
     -- Alimentos (150 produtos)
     FOR i IN 1..150 LOOP
         BEGIN
-            INSERT INTO DIM_PRODUTO (COD_PRODUTO, NOME_PRODUTO, CATEGORIA, PRECO)
+            INSERT INTO DIM_PRODUTO (COD_PRODUTO, NOME_PRODUTO, CATEGORIA)
             VALUES (
                 v_cod_produto,
                 CASE FLOOR(DBMS_RANDOM.VALUE(1, 6))
@@ -403,14 +389,7 @@ BEGIN
                     WHEN 4 THEN 'Azeite Gallo Extra Virgem 500ml'
                     ELSE 'Chocolate Nestlé KitKat'
                 END,
-                'Alimentos',
-                CASE FLOOR(DBMS_RANDOM.VALUE(1, 6))
-                    WHEN 1 THEN 25.90
-                    WHEN 2 THEN 7.50
-                    WHEN 3 THEN 8.90
-                    WHEN 4 THEN 34.90
-                    ELSE 5.50
-                END
+                'Alimentos'
             );
             v_cod_produto := v_cod_produto + 1;
         END;
@@ -419,7 +398,7 @@ BEGIN
     -- Móveis (150 produtos)
     FOR i IN 1..150 LOOP
         BEGIN
-            INSERT INTO DIM_PRODUTO (COD_PRODUTO, NOME_PRODUTO, CATEGORIA, PRECO)
+            INSERT INTO DIM_PRODUTO (COD_PRODUTO, NOME_PRODUTO, CATEGORIA)
             VALUES (
                 v_cod_produto,
                 CASE FLOOR(DBMS_RANDOM.VALUE(1, 6))
@@ -429,14 +408,7 @@ BEGIN
                     WHEN 4 THEN 'Armário Cozinha Itatiaia'
                     ELSE 'Cadeira Escritório Giratória'
                 END,
-                'Móveis',
-                CASE FLOOR(DBMS_RANDOM.VALUE(1, 6))
-                    WHEN 1 THEN 1299.90
-                    WHEN 2 THEN 1999.90
-                    WHEN 3 THEN 899.90
-                    WHEN 4 THEN 599.90
-                    ELSE 349.90
-                END
+                'Móveis'
             );
             v_cod_produto := v_cod_produto + 1;
         END;
@@ -445,7 +417,7 @@ BEGIN
     -- Livros (100 produtos)
     FOR i IN 1..100 LOOP
         BEGIN
-            INSERT INTO DIM_PRODUTO (COD_PRODUTO, NOME_PRODUTO, CATEGORIA, PRECO)
+            INSERT INTO DIM_PRODUTO (COD_PRODUTO, NOME_PRODUTO, CATEGORIA)
             VALUES (
                 v_cod_produto,
                 CASE FLOOR(DBMS_RANDOM.VALUE(1, 6))
@@ -455,14 +427,7 @@ BEGIN
                     WHEN 4 THEN 'Livro Dom Casmurro'
                     ELSE 'Livro Sapiens - Yuval Harari'
                 END,
-                'Livros',
-                CASE FLOOR(DBMS_RANDOM.VALUE(1, 6))
-                    WHEN 1 THEN 39.90
-                    WHEN 2 THEN 59.90
-                    WHEN 3 THEN 34.90
-                    WHEN 4 THEN 29.90
-                    ELSE 49.90
-                END
+                'Livros'
             );
             v_cod_produto := v_cod_produto + 1;
         END;
@@ -471,7 +436,7 @@ BEGIN
     -- Esportes, Beleza, Brinquedos, Ferramentas, Automotivo (300 produtos)
     FOR i IN 1..300 LOOP
         BEGIN
-            INSERT INTO DIM_PRODUTO (COD_PRODUTO, NOME_PRODUTO, CATEGORIA, PRECO)
+            INSERT INTO DIM_PRODUTO (COD_PRODUTO, NOME_PRODUTO, CATEGORIA)
             VALUES (
                 v_cod_produto,
                 CASE FLOOR(DBMS_RANDOM.VALUE(1, 6))
@@ -487,13 +452,6 @@ BEGIN
                     WHEN 3 THEN 'Brinquedos'
                     WHEN 4 THEN 'Ferramentas'
                     ELSE 'Automotivo'
-                END,
-                CASE FLOOR(DBMS_RANDOM.VALUE(1, 6))
-                    WHEN 1 THEN 129.90
-                    WHEN 2 THEN 799.90
-                    WHEN 3 THEN 499.90
-                    WHEN 4 THEN 249.90
-                    ELSE 179.90
                 END
             );
             v_cod_produto := v_cod_produto + 1;
@@ -514,12 +472,41 @@ EXEC CARGA_DIM_PRODUTO;
 -- Procedure para popular tabela FATO_VENDAS
 CREATE OR REPLACE PROCEDURE CARGA_FATO_VENDAS AS
     v_qtd_max NUMBER := 1000000; -- 1 milhão de registros
+    v_cod_produto NUMBER;
+    v_qtd_vendida NUMBER;
+    v_preco_unitario NUMBER;
+    v_categoria VARCHAR2(50);
 BEGIN
     FOR i IN 1..v_qtd_max LOOP
         BEGIN
+            -- Selecionar um produto aleatório
+            v_cod_produto := FLOOR(DBMS_RANDOM.VALUE(1, 1001)); -- COD_PRODUTO (1 a 1000)
+
+            -- Obter a categoria do produto
+            SELECT CATEGORIA INTO v_categoria
+            FROM DIM_PRODUTO
+            WHERE COD_PRODUTO = v_cod_produto;
+
+            -- Definir preço unitário com base na categoria
+            v_preco_unitario := CASE v_categoria
+                WHEN 'Eletrônicos' THEN ROUND(DBMS_RANDOM.VALUE(150, 4500), 2)
+                WHEN 'Roupas' THEN ROUND(DBMS_RANDOM.VALUE(29.90, 499.90), 2)
+                WHEN 'Alimentos' THEN ROUND(DBMS_RANDOM.VALUE(5.50, 34.90), 2)
+                WHEN 'Móveis' THEN ROUND(DBMS_RANDOM.VALUE(349.90, 1999.90), 2)
+                WHEN 'Livros' THEN ROUND(DBMS_RANDOM.VALUE(29.90, 59.90), 2)
+                WHEN 'Esportes' THEN ROUND(DBMS_RANDOM.VALUE(50, 129.90), 2)
+                WHEN 'Beleza' THEN ROUND(DBMS_RANDOM.VALUE(50, 799.90), 2)
+                WHEN 'Brinquedos' THEN ROUND(DBMS_RANDOM.VALUE(50, 499.90), 2)
+                WHEN 'Ferramentas' THEN ROUND(DBMS_RANDOM.VALUE(50, 249.90), 2)
+                WHEN 'Automotivo' THEN ROUND(DBMS_RANDOM.VALUE(50, 179.90), 2)
+                ELSE 100.00 -- Preço padrão para categorias não mapeadas
+            END;
+
+            -- Quantidade vendida
+            v_qtd_vendida := FLOOR(DBMS_RANDOM.VALUE(1, 11)); -- 1 a 10 unidades
+
             INSERT INTO FATO_VENDAS (
                 ID_VENDA,
-                COD_PEDIDO,
                 COD_CLIENTE,
                 COD_VENDEDOR,
                 SEQ_ENDERECO_CLIENTE,
@@ -530,14 +517,13 @@ BEGIN
                 VAL_DESCONTO
             ) VALUES (
                 i, -- ID_VENDA sequencial
-                i, -- COD_PEDIDO (simulando 1:1 com ID_VENDA por simplicidade)
                 FLOOR(DBMS_RANDOM.VALUE(1, 10001)), -- COD_CLIENTE (1 a 10.000)
                 FLOOR(DBMS_RANDOM.VALUE(1, 101)), -- COD_VENDEDOR (1 a 100)
                 FLOOR(DBMS_RANDOM.VALUE(1, 501)), -- SEQ_ENDERECO_CLIENTE (1 a 500)
                 FLOOR(DBMS_RANDOM.VALUE(1, 1826)), -- ID_TEMPO (1 a 1825)
-                FLOOR(DBMS_RANDOM.VALUE(1, 1001)), -- COD_PRODUTO (1 a 1000)
-                FLOOR(DBMS_RANDOM.VALUE(1, 11)), -- QTD_PRODUTO_VENDIDO (1 a 10 unidades)
-                (SELECT PRECO * FLOOR(DBMS_RANDOM.VALUE(1, 11)) FROM DIM_PRODUTO WHERE COD_PRODUTO = FLOOR(DBMS_RANDOM.VALUE(1, 1001))), -- VAL_TOTAL_PEDIDO (preço x quantidade)
+                v_cod_produto, -- COD_PRODUTO
+                v_qtd_vendida, -- QTD_PRODUTO_VENDIDO (1 a 10 unidades)
+                v_preco_unitario * v_qtd_vendida, -- VAL_TOTAL_PEDIDO (preço unitário x quantidade)
                 ROUND(DBMS_RANDOM.VALUE(0, 50), 2) -- VAL_DESCONTO (0 a 50 reais)
             );
         EXCEPTION

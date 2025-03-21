@@ -142,9 +142,12 @@ VALUES (104, 'Teste Vendedor 4');
 INSERT INTO DIM_LOCALIZACAO (SEQ_ENDERECO_CLIENTE, ESTADO, CIDADE) 
 VALUES (551, 'SP', 'São Paulo');
 
--- Inserção em DIM_PRODUTO
-INSERT INTO DIM_PRODUTO (COD_PRODUTO, NOME_PRODUTO, CATEGORIA, PRECO) 
-VALUES (1101, 'Teste Produto 3', 'Teste', 99.90);
+-- Inserção em DIM_PRODUTO (removido o campo PRECO)
+INSERT INTO DIM_PRODUTO (COD_PRODUTO, NOME_PRODUTO, CATEGORIA) 
+VALUES (1101, 'Teste Produto 3', 'Teste');
+
+-- Consulta dos dados de auditoria
+SELECT * FROM AUDITORIA_DIMENSOES;
 
 -- Consulta dos dados de auditoria
 SELECT * FROM AUDITORIA_DIMENSOES;
